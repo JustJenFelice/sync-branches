@@ -7073,7 +7073,7 @@ function percentEncode(c) {
 }
 
 function utf8PercentEncode(c) {
-  const buf = new Buffer(c);
+  const buf = Buffer.from(c);
 
   let str = "";
 
@@ -7085,7 +7085,7 @@ function utf8PercentEncode(c) {
 }
 
 function utf8PercentDecode(str) {
-  const input = new Buffer(str);
+  const input = Buffer.from(str);
   const output = [];
   for (let i = 0; i < input.length; ++i) {
     if (input[i] !== 37) {
@@ -7097,7 +7097,7 @@ function utf8PercentDecode(str) {
       output.push(input[i]);
     }
   }
-  return new Buffer(output).toString();
+  return Buffer.from(output).toString();
 }
 
 function isC0ControlPercentEncode(c) {
@@ -8102,7 +8102,7 @@ URLStateMachine.prototype["parse query"] = function parseQuery(c, cStr) {
       this.encodingOverride = "utf-8";
     }
 
-    const buffer = new Buffer(this.buffer); // TODO: Use encoding override instead
+    const buffer = Buffer.from(this.buffer); // TODO: Use encoding override instead
     for (let i = 0; i < buffer.length; ++i) {
       if (buffer[i] < 0x21 || buffer[i] > 0x7E || buffer[i] === 0x22 || buffer[i] === 0x23 ||
           buffer[i] === 0x3C || buffer[i] === 0x3E) {
